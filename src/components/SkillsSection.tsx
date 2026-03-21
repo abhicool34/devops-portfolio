@@ -8,7 +8,6 @@ import CICDPipeline from "./CICDPipeline";
 
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
-// once: false so animations replay on scroll up
 const fadeUp = {
   hidden:  { opacity: 0, y: 28 },
   visible: (i: number) => ({
@@ -25,20 +24,11 @@ function SkillCard({ group, index }: { group: typeof SKILL_GROUPS[number]; index
   useEffect(() => {
     if (!cardRef.current) return;
     const ctx = gsap.context(() => {
-      // Kill old triggers so they rebuild on each inView change
-      ScrollTrigger.getAll().forEach((t) => {
-        if (t.vars.trigger === cardRef.current) t.kill();
-      });
-
       if (inView) {
         cardRef.current?.querySelectorAll(".skill-fill").forEach((bar) => {
-          gsap.to(bar, {
-            width: bar.getAttribute("data-width") + "%",
-            duration: 1.4, ease: "power2.out", delay: index * 0.05,
-          });
+          gsap.to(bar, { width: bar.getAttribute("data-width") + "%", duration: 1.4, ease: "power2.out", delay: index * 0.05 });
         });
       } else {
-        // Reset bars when scrolled out so they re-animate coming back
         cardRef.current?.querySelectorAll(".skill-fill").forEach((bar) => {
           gsap.set(bar, { width: 0 });
         });
@@ -50,22 +40,23 @@ function SkillCard({ group, index }: { group: typeof SKILL_GROUPS[number]; index
   return (
     <motion.div
       ref={cardRef}
-      className="bg-bg2 border border-[rgba(48,54,61,0.8)] rounded-lg p-7 hover:border-[rgba(0,208,132,0.25)] transition-colors duration-250"
+      className="bg-bg2 border border-[rgba(48,54,61,0.8)] rounded-lg p-5 md:p-7
+                 hover:border-[rgba(0,208,132,0.25)] transition-colors duration-250"
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={fadeUp}
       custom={index * 0.5}
     >
-      <div className="flex items-center gap-2 font-mono text-[0.82rem] text-text2 font-medium mb-5">
-        <span className="w-2 h-2 rounded-full bg-green" />
+      <div className="flex items-center gap-2 font-mono text-[0.78rem] md:text-[0.82rem] text-text2 font-medium mb-4 md:mb-5">
+        <span className="w-2 h-2 rounded-full bg-green flex-shrink-0" />
         {group.title}
       </div>
-      <div className="space-y-4">
+      <div className="space-y-3 md:space-y-4">
         {group.skills.map((skill, si) => (
           <div key={si}>
-            <div className="flex justify-between mb-1.5">
-              <span className="font-mono text-[0.82rem] text-text1">{skill.name}</span>
-              <span className="font-mono text-[0.78rem] text-text3">{skill.pct}%</span>
+            <div className="flex justify-between mb-1 md:mb-1.5">
+              <span className="font-mono text-[0.75rem] md:text-[0.82rem] text-text1">{skill.name}</span>
+              <span className="font-mono text-[0.72rem] md:text-[0.78rem] text-text3 ml-2 flex-shrink-0">{skill.pct}%</span>
             </div>
             <div className="h-[3px] bg-[rgba(255,255,255,0.05)] rounded-full overflow-hidden">
               <div
@@ -84,11 +75,11 @@ function SkillCard({ group, index }: { group: typeof SKILL_GROUPS[number]; index
 const ALL_SKILLS = [
   "AWS (EKS, EC2, RDS, S3, Lambda, VPC, CloudFront, Route53, SageMaker, Glue, Lake Formation, IAM, SQS, SES, Bedrock)",
   "GCP (GKE, PubSub, CloudSQL, Composer, Compute Engine)",
-  "Terraform", "CloudFormation", "Docker", "Kubernetes (EKS, GKE)", "Helm",
-  "Jenkins", "Python", "Shell Scripting", "Puppet", "Ansible",
-  "Linux (CentOS, Ubuntu, RedHat)", "Windows Server",
-  "ELK", "Datadog", "Grafana", "PagerDuty", "CloudWatch",
-  "Bitbucket", "GitHub", "JFrog", "Jira", "ServiceNow",
+  "Terraform","CloudFormation","Docker","Kubernetes (EKS, GKE)","Helm",
+  "Jenkins","Python","Shell Scripting","Puppet","Ansible",
+  "Linux (CentOS, Ubuntu, RedHat)","Windows Server",
+  "ELK","Datadog","Grafana","PagerDuty","CloudWatch",
+  "Bitbucket","GitHub","JFrog","Jira","ServiceNow",
 ];
 
 export default function SkillsSection() {
@@ -96,54 +87,47 @@ export default function SkillsSection() {
   const inView = useInView(ref, { once: false, margin: "-80px" });
 
   return (
-    <section id="skills" className="py-24 relative z-10">
-      <div className="max-w-[1100px] mx-auto px-10" ref={ref}>
+    <section id="skills" className="py-16 md:py-24 relative z-10">
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 md:px-10" ref={ref}>
 
-        {/* Section heading */}
-        <motion.div
-          className="mb-4"
-          initial="hidden" animate={inView ? "visible" : "hidden"}
-          variants={fadeUp} custom={0}
-        >
+        <motion.div className="mb-3 md:mb-4"
+          initial="hidden" animate={inView ? "visible" : "hidden"} variants={fadeUp} custom={0}>
           <span className="font-mono text-sm text-green font-medium">02.</span>
-          <h2 className="font-sans text-[2.2rem] font-bold text-text1 inline ml-3">Skills &amp; Pipeline</h2>
+          <h2 className="font-sans text-[1.8rem] md:text-[2.2rem] font-bold text-text1 inline ml-2 md:ml-3">
+            Skills &amp; Pipeline
+          </h2>
           <div className="h-px bg-[rgba(48,54,61,0.8)] mt-2 mb-2" />
         </motion.div>
 
-        <motion.p
-          className="font-mono text-xs text-text3 mb-12"
-          initial="hidden" animate={inView ? "visible" : "hidden"}
-          variants={fadeUp} custom={1}
-        >
+        <motion.p className="font-mono text-xs text-text3 mb-8 md:mb-12"
+          initial="hidden" animate={inView ? "visible" : "hidden"} variants={fadeUp} custom={1}>
           <span className="text-green">$ </span>cat /etc/skills/pipeline.yaml
         </motion.p>
 
-        {/* ── CI/CD Pipeline Animation ── */}
         <CICDPipeline />
 
-        {/* Skill bar cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-10">
           {SKILL_GROUPS.map((group, i) => <SkillCard key={i} group={group} index={i} />)}
         </div>
 
-        {/* Full tech stack tags */}
         <motion.div
-          className="bg-bg2 border border-[rgba(48,54,61,0.8)] rounded-lg p-6"
+          className="bg-bg2 border border-[rgba(48,54,61,0.8)] rounded-lg p-4 md:p-6"
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: "-60px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <div className="flex items-center gap-2 font-mono text-[0.82rem] text-text2 font-medium mb-4">
+          <div className="flex items-center gap-2 font-mono text-[0.78rem] md:text-[0.82rem] text-text2 font-medium mb-3 md:mb-4">
             <span className="w-2 h-2 rounded-full bg-green" />
             Full Technology Stack
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 md:gap-2">
             {ALL_SKILLS.map((skill, i) => (
               <span key={i}
-                className="font-mono text-[0.7rem] text-cyan bg-[rgba(88,166,255,0.07)]
-                           border border-[rgba(88,166,255,0.15)] rounded px-2.5 py-1
-                           hover:bg-[rgba(88,166,255,0.14)] hover:border-[rgba(88,166,255,0.3)] transition-colors duration-150"
+                className="font-mono text-[0.65rem] md:text-[0.7rem] text-cyan
+                           bg-[rgba(88,166,255,0.07)] border border-[rgba(88,166,255,0.15)]
+                           rounded px-2 md:px-2.5 py-0.5 md:py-1
+                           hover:bg-[rgba(88,166,255,0.14)] transition-colors duration-150"
               >
                 {skill}
               </span>

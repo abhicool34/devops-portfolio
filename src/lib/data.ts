@@ -136,57 +136,6 @@ export const EXPERIENCE = [
   },
 ];
 
-export const PROJECTS = [
-  {
-    icon: "☁️",
-    title: "Multi-Cloud Infrastructure Orchestration",
-    desc: "Designed and deployed a scalable infrastructure spanning AWS and GCP with automated failover capabilities and disaster recovery.",
-    pipeline: ["Terraform", "Ansible", "Jenkins", "GitHub", "AWS", "GCP"],
-    tags: ["Terraform", "AWS", "GCP", "Kubernetes", "Python"],
-    metrics: [
-      { val: "99.99%", label: "Uptime SLA" },
-      { val: "50+", label: "Apps Running" },
-      { val: "30 nodes", label: "K8s Cluster" },
-    ],
-  },
-  {
-    icon: "🐳",
-    title: "Containerization & Kubernetes Migration",
-    desc: "Migrated legacy monolithic applications to microservices architecture with Docker containerization and Kubernetes orchestration.",
-    pipeline: ["Docker", "Kubernetes", "Helm", "GitOps", "ArgoCD"],
-    tags: ["Docker", "Kubernetes", "Helm", "YAML", "DevOps"],
-    metrics: [
-      { val: "100+", label: "Microservices" },
-      { val: "Zero", label: "Downtime" },
-      { val: "70%", label: "Cost Reduction" },
-    ],
-  },
-  {
-    icon: "🔄",
-    title: "CI/CD Pipeline Automation",
-    desc: "Built enterprise-grade CI/CD pipelines with Jenkins for continuous integration, testing, and deployment across multiple environments.",
-    pipeline: ["Git", "Jenkins", "Docker", "SonarQube", "Artifactory"],
-    tags: ["Jenkins", "GitHub", "Docker", "Testing", "Automation"],
-    metrics: [
-      { val: "50+", label: "Deployments/Day" },
-      { val: "4 mins", label: "Build Time" },
-      { val: "100%", label: "Automation" },
-    ],
-  },
-  {
-    icon: "📊",
-    title: "Monitoring & Observability Stack",
-    desc: "Implemented comprehensive monitoring, logging, and alerting infrastructure using ELK, Datadog, and PagerDuty for proactive incident management.",
-    pipeline: ["ELK Stack", "Datadog", "Grafana", "Prometheus", "PagerDuty"],
-    tags: ["ELK", "Grafana", "Datadog", "Prometheus", "Monitoring"],
-    metrics: [
-      { val: "<5 min", label: "Alert Response" },
-      { val: "1000+", label: "Metrics Tracked" },
-      { val: "24/7", label: "Observability" },
-    ],
-  },
-];
-
 export const CONTACT = {
   phone:    "+917506218066",
   email:    "mauryaabhishek299@gmail.com",
