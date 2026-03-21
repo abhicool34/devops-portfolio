@@ -136,6 +136,57 @@ export const EXPERIENCE = [
   },
 ];
 
+export const PROJECTS = [
+  {
+    icon: "☸️",
+    title: "Multi-Cloud Kubernetes Orchestration",
+    desc: "Automated deployment and management of microservices across AWS EKS and GCP GKE clusters with zero-downtime migrations.",
+    pipeline: ["Git", "Jenkins", "Docker", "Helm", "EKS/GKE"],
+    tags: ["Kubernetes", "Helm", "AWS", "GCP", "CI/CD", "Automation"],
+    metrics: [
+      { val: "100+", label: "Microservices" },
+      { val: "99.99%", label: "Uptime" },
+      { val: "30+", label: "Nodes" },
+    ],
+  },
+  {
+    icon: "🏗️",
+    title: "Infrastructure as Code Automation",
+    desc: "Provisioned 50+ production applications using Terraform and CloudFormation with environment parity and version control.",
+    pipeline: ["Terraform", "CloudFormation", "Git", "Ansible", "AWS"],
+    tags: ["Terraform", "IaC", "AWS", "CloudFormation", "Python"],
+    metrics: [
+      { val: "50+", label: "Apps Deployed" },
+      { val: "70%", label: "Manual Reduction" },
+      { val: "100%", label: "Version Controlled" },
+    ],
+  },
+  {
+    icon: "📊",
+    title: "Observability & Monitoring Platform",
+    desc: "Designed centralized monitoring stack with ELK, Datadog and Grafana for real-time insights across 100+ services.",
+    pipeline: ["Datadog", "ELK", "Grafana", "PagerDuty", "Prometheus"],
+    tags: ["Monitoring", "ELK", "Datadog", "Grafana", "Observability"],
+    metrics: [
+      { val: "100+", label: "Services Monitored" },
+      { val: "< 2min", label: "Alert Response" },
+      { val: "99.9%", label: "Logging Coverage" },
+    ],
+  },
+  {
+    icon: "🔄",
+    title: "CI/CD Pipeline Optimization",
+    desc: "Built scalable Jenkins CI/CD pipelines with automated testing, security scanning and deployment workflows.",
+    pipeline: ["GitHub", "Jenkins", "SonarQube", "Docker", "Kubernetes"],
+    tags: ["Jenkins", "CI/CD", "Git", "Docker", "DevOps"],
+    metrics: [
+      { val: "50+", label: "Pipelines" },
+      { val: "< 5min", label: "Deployment Time" },
+      { val: "100%", label: "Build Success Rate" },
+    ],
+  },
+];
+
 export const CONTACT = {
   phone:    "+917506218066",
   email:    "mauryaabhishek299@gmail.com",
