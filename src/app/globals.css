@@ -5,25 +5,24 @@
 @tailwind utilities;
 
 :root {
-  --bg:     #0d1117;
-  --bg2:    #161b22;
-  --bg3:    #1c2128;
-  --green:  #00d084;
-  --cyan:   #58a6ff;
-  --text1:  #e6edf3;
-  --text2:  #8b949e;
-  --text3:  #6e7681;
+  --bg:    #0d1117;
+  --bg2:   #161b22;
+  --bg3:   #1c2128;
+  --green: #00d084;
+  --cyan:  #58a6ff;
+  --text1: #e6edf3;
+  --text2: #8b949e;
+  --text3: #6e7681;
   --border: rgba(48, 54, 61, 0.8);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
   scroll-behavior: smooth;
+  /* Prevent font size inflation on mobile */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -31,7 +30,12 @@ body {
   color: var(--text1);
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
+  /* Smooth scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
 }
+
+/* Prevent horizontal overflow on mobile */
+main { overflow-x: hidden; }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 4px; }
@@ -67,10 +71,12 @@ body {
   50%       { box-shadow: 0 0 0 7px rgba(0,208,132,0); }
 }
 .pulse-dot {
+  display: inline-block;
   width: 8px;
   height: 8px;
   background: var(--green);
   border-radius: 50%;
+  flex-shrink: 0;
   animation: greenPulse 2s ease-in-out infinite;
 }
 
@@ -89,9 +95,10 @@ body {
   background: linear-gradient(90deg, var(--green), var(--cyan));
   z-index: 9999;
   transition: width 0.1s linear;
+  pointer-events: none;
 }
 
-/* Skill bar fill animation */
+/* Skill bar fill */
 .skill-fill {
   height: 100%;
   background: linear-gradient(90deg, var(--green), var(--cyan));
@@ -100,8 +107,20 @@ body {
   transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Section fade-in utility */
-.section-fade {
-  opacity: 0;
-  transform: translateY(28px);
+/* Hide scrollbar utility */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Better tap targets on mobile */
+@media (max-width: 768px) {
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  /* Override for small inline elements */
+  .font-mono.text-xs button,
+  .font-mono.text-xs a {
+    min-height: unset;
+    min-width: unset;
+  }
 }

@@ -8,9 +8,14 @@ export default function HeroSection() {
   const [heroVisible, setHeroVisible] = useState(false);
 
   return (
-    <section id="home" className="min-h-screen flex flex-col items-center justify-start pt-20 pb-16 px-6 relative z-10">
+    <section
+      id="home"
+      className="min-h-screen flex flex-col items-center justify-start
+                 pt-16 md:pt-20 pb-10 md:pb-16 px-4 sm:px-6 relative z-10"
+    >
+      {/* Terminal */}
       <motion.div
-        className="w-full flex justify-center mt-10"
+        className="w-full flex justify-center mt-6 md:mt-10"
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
@@ -18,10 +23,11 @@ export default function HeroSection() {
         <HeroTerminal onComplete={() => setHeroVisible(true)} />
       </motion.div>
 
-      <div className="w-full max-w-[680px] text-center pt-14 flex flex-col items-center">
+      {/* Name + roles */}
+      <div className="w-full max-w-[680px] text-center pt-8 md:pt-14 flex flex-col items-center">
         <motion.h1
-          className="font-sans font-black tracking-tight leading-none mb-5 whitespace-nowrap"
-          style={{ fontSize: "clamp(3.2rem, 7vw, 5.5rem)" }}
+          className="font-sans font-black tracking-tight leading-none mb-4 md:mb-5 whitespace-nowrap"
+          style={{ fontSize: "clamp(2.6rem, 10vw, 5.5rem)" }}
           initial={{ opacity: 0, y: 28 }}
           animate={heroVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
           transition={{ duration: 0.75, ease: "easeOut" }}
@@ -33,22 +39,23 @@ export default function HeroSection() {
           }}>Maurya</span>
         </motion.h1>
 
+        {/* Roles — stack vertically on very small screens */}
         <motion.div
-          className="flex gap-5 items-center justify-center text-text2 flex-wrap mb-4"
-          style={{ fontSize: "0.97rem" }}
+          className="flex flex-wrap gap-x-4 gap-y-1 items-center justify-center text-text2 mb-4"
+          style={{ fontSize: "clamp(0.8rem, 3.5vw, 0.97rem)" }}
           initial={{ opacity: 0 }}
           animate={heroVisible ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.7, delay: 0.25 }}
         >
           <span>DevOps Engineer</span>
-          <span className="text-text3 text-sm">|</span>
+          <span className="text-text3 hidden sm:inline">|</span>
           <span>SRE</span>
-          <span className="text-text3 text-sm">|</span>
+          <span className="text-text3 hidden sm:inline">|</span>
           <span>Platform Engineer</span>
         </motion.div>
 
         <motion.div
-          className="flex items-center gap-2 font-mono text-sm font-semibold text-green justify-center mb-11"
+          className="flex items-center gap-2 font-mono font-bold text-sm md:text-base text-green justify-center mb-8 md:mb-11"
           initial={{ opacity: 0 }}
           animate={heroVisible ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.7, delay: 0.45 }}
@@ -58,7 +65,8 @@ export default function HeroSection() {
         </motion.div>
 
         <motion.button
-          className="flex flex-col items-center gap-1 text-text3 text-xs cursor-pointer bg-transparent border-none arrow-bounce"
+          className="flex flex-col items-center gap-1 text-text3 text-xs
+                     cursor-pointer bg-transparent border-none arrow-bounce"
           initial={{ opacity: 0 }}
           animate={heroVisible ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.7, delay: 0.65 }}
