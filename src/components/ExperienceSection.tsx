@@ -59,7 +59,7 @@ export default function ExperienceSection() {
             className="timeline-line absolute left-5 md:left-7 top-4 bottom-0 w-px"
             style={{
               background: "linear-gradient(180deg,#00d084 0%,rgba(0,208,132,0.1) 100%)",
-              scaleY: 0, transformOrigin: "top",
+              transform: "scaleY(0)", transformOrigin: "top",
             }}
           />
 
